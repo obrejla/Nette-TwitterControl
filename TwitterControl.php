@@ -39,8 +39,8 @@ class TwitterControl extends Control {
      * @return string
      */
     public static function twitterLinks($text) {
-        $search = array('|(http://[^ ]+)|', '/(^|[^a-z0-9_])@([a-z0-9_]+)/i');
-        $replace = array('<a href="$1" title="$1">$1</a>', '$1<a href="http://twitter.com/$2" title="$2">@$2</a>');
+        $search = array('|(http://[^ ]+)|', '/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '/(|\s)#(\w+)/i');
+        $replace = array('<a href="$1" title="$1">$1</a>', '$1<a href="http://twitter.com/$2" title="$2">@$2</a>', '$1<a href="http://twitter.com/search?q=%23$2" title="$2">#$2</a>');
         $text = preg_replace($search, $replace, $text);
 
         return $text;
